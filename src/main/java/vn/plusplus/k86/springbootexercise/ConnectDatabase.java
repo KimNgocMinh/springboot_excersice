@@ -1,21 +1,24 @@
 package vn.plusplus.k86.springbootexercise;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@NoArgsConstructor
-@Getter @Setter
 public class ConnectDatabase {
     private static final ConnectDatabase INSTANCE = new ConnectDatabase();
     private Connection connection;
 
     public static ConnectDatabase getInstance() {
+        System.out.println("Khởi tạo duy nhất một Instance của ConnectDatabase");
         return INSTANCE;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
     public void connectMySql() {
@@ -27,7 +30,5 @@ public class ConnectDatabase {
         }
 
     }
-
-
 
 }

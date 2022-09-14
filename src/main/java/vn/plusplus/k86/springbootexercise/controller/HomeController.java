@@ -8,12 +8,15 @@ import vn.plusplus.k86.springbootexercise.model.UserService;
 @RestController
 @RequestMapping("/home")
 public class HomeController {
-
+    private final UserService userService = new UserService();
 
     @PostMapping("/register")
     public String register(@RequestBody User user) {
-        UserService userService = new UserService();
         return userService.createUser(user);
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody User user) {
+        return userService.authentication(user);
+    }
 }
