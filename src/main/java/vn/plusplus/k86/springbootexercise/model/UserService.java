@@ -1,6 +1,6 @@
 package vn.plusplus.k86.springbootexercise.model;
 
-import vn.plusplus.k86.springbootexercise.ConnectDatabase;
+import vn.plusplus.k86.springbootexercise.config.ConnectDatabase;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserService {
-    ConnectDatabase connectDatabase = ConnectDatabase.getInstance();
+    Connection connection = null;
 
     public UserService() {
-
+        this.connection = ConnectDatabase.getConnection();
     }
 
     //thêm tài khoản người dùng vào database nếu hợp lệ, nếu sai trả về lỗi tương ứng
@@ -33,13 +33,12 @@ public class UserService {
         }
 
         try {
-            connectDatabase.connectMySql();
-            Statement statement = connectDatabase.getConnection().createStatement();
+            Statement statement = connection.createStatement();
             statement.execute("insert into user values('" + user.getPhone()
                     + "','" + user.getPassword()
                     + "','" + user.getEmail()
                     + "')");
-            connectDatabase.getConnection().close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("Error");
         }
@@ -50,15 +49,14 @@ public class UserService {
     public boolean checkValidPhone(String phone) {
 
         try {
-            connectDatabase.connectMySql();
-            Statement statement = connectDatabase.getConnection().createStatement();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select phone from user");
             while (resultSet.next()) {
                 if (resultSet.getString("phone").equals(phone)) {
                     return false;
                 }
             }
-            connectDatabase.getConnection().close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("Error");;
         }
@@ -69,15 +67,14 @@ public class UserService {
     public boolean checkValidEmail(String email) {
 
         try {
-            connectDatabase.connectMySql();
-            Statement statement = connectDatabase.getConnection().createStatement();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select email from user");
             while (resultSet.next()) {
                 if (resultSet.getString("email").equals(email)) {
                     return false;
                 }
             }
-            connectDatabase.getConnection().close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("Error");;
         }
@@ -87,15 +84,14 @@ public class UserService {
     //So sánh password của người dùng nhập vs password trong database
     public boolean checkPassword(String password) {
         try {
-            connectDatabase.connectMySql();
-            Statement statement = connectDatabase.getConnection().createStatement();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select password from user");
             while (resultSet.next()) {
                 if (resultSet.getString("password").equals(password)) {
                     return false;
                 }
             }
-            connectDatabase.getConnection().close();
+            connection.close();
         } catch (SQLException e) {
             System.out.println("Error");;
         }

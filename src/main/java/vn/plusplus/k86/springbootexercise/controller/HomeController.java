@@ -1,7 +1,6 @@
 package vn.plusplus.k86.springbootexercise.controller;
 
 import org.springframework.web.bind.annotation.*;
-import vn.plusplus.k86.springbootexercise.ConnectDatabase;
 import vn.plusplus.k86.springbootexercise.model.User;
 import vn.plusplus.k86.springbootexercise.model.UserService;
 
