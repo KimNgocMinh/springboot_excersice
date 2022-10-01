@@ -1,17 +1,24 @@
 package vn.plusplus.k86.springbootexercise.model;
 
+import java.util.List;
+
 public class User {
     private String phone;
     private String password;
     private String email;
 
+    private List<Rate> ratedMovies;
+
+    private List<Movie> favoriteMovie;
+
     public User() {
     }
 
-    public User(String phone, String password, String email) {
+    public User(String phone, String password, String email, List<Movie> favoriteMovie) {
         this.phone = phone;
         this.password = password;
         this.email = email;
+        this.favoriteMovie = favoriteMovie;
     }
 
     public String getPhone() {
@@ -36,5 +43,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Movie> getFavoriteMovie() {
+        return favoriteMovie;
+    }
+
+    public void setFavoriteMovie(List<Movie> favoriteMovie) {
+        this.favoriteMovie = favoriteMovie;
     }
 }
