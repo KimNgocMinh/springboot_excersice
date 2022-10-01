@@ -12,22 +12,22 @@ public class MovieDao extends AbstractDAO<Movie> implements IMovieDao {
     private final MovieMapper movieMapper = new MovieMapper();
 
     @Override
-    public List<Movie> findByPopularity(Boolean popularity) {
-        String sql = "select * from movies where popularity = ?";
-        return query(sql, movieMapper,popularity);
+    public List<Movie> findByPopularity(Boolean popularity, int page) {
+        String sql = "select * from movies where popularity = ? limit 3 offset ? ";
+        return query(sql, movieMapper, popularity, page);
 
     }
 
     @Override
-    public List<Movie> findByStatus(boolean status) {
-        String sql = "select * from movies where status = ?";
-        return query(sql,movieMapper,status);
+    public List<Movie> findByStatus(boolean status, int page) {
+        String sql = "select * from movies where status = ? limit 3 offset ? ";
+        return query(sql,movieMapper,status, page);
     }
 
     @Override
-    public List<Movie> findAllOrderByRateTop() {
-        String sql = "select * from movies order by avg_rate desc ";
-        return query(sql, movieMapper);
+    public List<Movie> findAllOrderByRateTop(int page) {
+        String sql = "select * from movies order by avg_rate desc limit 3 offset ? ";
+        return query(sql, movieMapper,page);
     }
 
     @Override
@@ -38,10 +38,11 @@ public class MovieDao extends AbstractDAO<Movie> implements IMovieDao {
 
 
     @Override
-    public List<Movie> getAllFavoriteMoviesByUser(String userId) {
+    public List<Movie>  getAllFavoriteMoviesByUser(String userId, int page) {
             String hql = "select * from movies m " +
                     "left join favorite_movies fm on m.id=fm.movie_id " +
-                    "where fm.user_id = ?";
-            return query(hql,movieMapper,userId);
+                    "where fm.user_id = ? " +
+                    "limit 3 offset ? ";
+            return query(hql,movieMapper,userId, page);
         }
 }

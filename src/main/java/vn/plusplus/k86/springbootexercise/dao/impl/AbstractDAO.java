@@ -102,6 +102,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 if (parameter instanceof Long) {
                     statement.setLong(index,(Long) parameter);
                 }
+                if (parameter instanceof Integer) {
+                    statement.setInt(index,(Integer) parameter);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

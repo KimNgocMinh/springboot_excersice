@@ -18,5 +18,5 @@ public interface IUserService {
 
     String rateMovie(String userId, Long movieId, Double rate);
 
-    List<Movie> getAllFavoriteMoviesByUser(String userId);
+    List<Movie> getAllFavoriteMoviesByUser(String userId, int page);
 }

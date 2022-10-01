@@ -33,8 +33,8 @@ public class UserController {
         return userService.rateMovie(userId, movieId, score);
     }
 
-    @PostMapping("{userId}/allfavor")
-    public List<Movie> getAllFavoriteMoviesByUser(@PathVariable String userId) {
-        return userService.getAllFavoriteMoviesByUser(userId);
+    @PostMapping("{userId}/allfavor/{page}")
+    public List<Movie> getAllFavoriteMoviesByUser(@PathVariable String userId, @PathVariable int page) {
+        return userService.getAllFavoriteMoviesByUser(userId, page);
     }
 }

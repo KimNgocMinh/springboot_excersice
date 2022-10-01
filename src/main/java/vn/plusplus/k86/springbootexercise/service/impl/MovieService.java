@@ -19,17 +19,17 @@ public class MovieService implements IMovieService {
 
 
     @Override
-    public List<Movie> getListMovieByPopularities(boolean popular) {
-        return movieDao.findByPopularity(popular);
+    public List<Movie> getListMovieByPopularities(boolean popular, int page) {
+        return movieDao.findByPopularity(popular, page);
     }
 
     @Override
-    public List<Movie> getListMovieByRate() {
-        return movieDao.findAllOrderByRateTop();
+    public List<Movie> getListMovieByRate(int page) {
+        return movieDao.findAllOrderByRateTop(page);
     }
 
     @Override
-    public List<Movie> getListMovieByStatus(boolean status) {
-        return movieDao.findByStatus(status);
+    public List<Movie> getListMovieByStatus(boolean status, int page) {
+        return movieDao.findByStatus(status, page);
     }
 }

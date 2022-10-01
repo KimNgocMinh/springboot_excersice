@@ -1,32 +1,24 @@
 package vn.plusplus.k86.springbootexercise.model;
 
-import java.sql.Timestamp;
-
 public class Movie {
     private Long id;
     private String movieName;
-    private Integer popularity;
-    private Integer status;
-    private Double rateTop;
+    private Boolean popularity;
+    private Boolean status;
+    private Double avgRate;
 
     private String information;
-
-    private Timestamp createdTimestamp;
-
-    private Timestamp lastUpdatedTimestamp;
 
     public Movie() {
     }
 
-    public Movie(Long id,String movieName, int popularity, int status, double rateTop,String information, Timestamp createdTimestamp, Timestamp lastUpdatedTimestamp) {
+    public Movie(Long id, String movieName, boolean popularity, boolean status, double avgRate, String information) {
         this.id = id;
         this.movieName = movieName;
         this.popularity = popularity;
         this.status = status;
-        this.rateTop = rateTop;
+        this.avgRate = avgRate;
         this.information = information;
-        this.createdTimestamp =createdTimestamp;
-        this.lastUpdatedTimestamp = lastUpdatedTimestamp;
     }
 
     public String getMovieName() {
@@ -37,28 +29,28 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public int isPopularity() {
+    public Boolean getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(int popularity) {
+    public void setPopularity(Boolean popularity) {
         this.popularity = popularity;
     }
 
-    public int isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
-    public double getRateTop() {
-        return rateTop;
+    public Double getAvgRate() {
+        return avgRate;
     }
 
-    public void setRateTop(double rateTop) {
-        this.rateTop = rateTop;
+    public void setAvgRate(Double avgRate) {
+        this.avgRate = avgRate;
     }
 
     public Long getId() {
@@ -76,20 +68,5 @@ public class Movie {
     public void setInformation(String information) {
         this.information = information;
     }
-
-    public Timestamp getCreatedTimestamp() {
-        return createdTimestamp;
-    }
-
-    public void setCreatedTimestamp(Timestamp createdTimestamp) {
-        this.createdTimestamp = createdTimestamp;
-    }
-
-    public Timestamp getLastUpdatedTimestamp() {
-        return lastUpdatedTimestamp;
-    }
-
-    public void setLastUpdatedTimestamp(Timestamp lastUpdatedTimestamp) {
-        this.lastUpdatedTimestamp = lastUpdatedTimestamp;
-    }
 }
+

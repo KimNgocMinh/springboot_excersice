@@ -74,7 +74,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<Movie> getAllFavoriteMoviesByUser(String userId) {
-        return movieDao.getAllFavoriteMoviesByUser(userId);
+    public List<Movie> getAllFavoriteMoviesByUser(String userId, int page) {
+        return movieDao.getAllFavoriteMoviesByUser(userId, page);
     }
 }

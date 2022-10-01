@@ -1,7 +1,6 @@
 package vn.plusplus.k86.springbootexercise.model;
 
 public class FavoriteMovies {
-    private Long id;
     private String userId;
     private Long movieId;
 
@@ -9,17 +8,8 @@ public class FavoriteMovies {
     }
 
     public FavoriteMovies(Long id, String userId, Long movieId) {
-        this.id = id;
         this.userId = userId;
         this.movieId = movieId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUserId() {

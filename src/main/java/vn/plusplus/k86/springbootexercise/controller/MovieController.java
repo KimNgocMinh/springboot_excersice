@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/movie")
 public class MovieController {
 
+    private static final int LIMIT = 3;
     private final IMovieService movieService;
 
     @Autowired
@@ -22,17 +23,17 @@ public class MovieController {
     }
 
     @PostMapping("/ratetop")
-    public List<Movie> getMoviesOrderByRateTop() {
-        return movieService.getListMovieByRate();
+    public List<Movie> getMoviesOrderByRateTop(@RequestParam int page) {
+        return movieService.getListMovieByRate((page -1) * LIMIT);
     }
 
     @PostMapping("/status")
-    public List<Movie> getMoviesByStatus(@RequestParam boolean status) {
-        return movieService.getListMovieByStatus(status);
+    public List<Movie> getMoviesByStatus(@RequestParam boolean status, @RequestParam int page) {
+        return movieService.getListMovieByStatus(status, (page -1) * LIMIT);
     }
 
     @PostMapping("/popularites")
-    public List<Movie> getMoviesByPopular(@RequestParam boolean status) {
-        return movieService.getListMovieByPopularities(status);
+    public List<Movie> getMoviesByPopular(@RequestParam boolean status, @RequestParam int page) {
+        return movieService.getListMovieByPopularities(status, (page -1) * LIMIT);
     }
 }
