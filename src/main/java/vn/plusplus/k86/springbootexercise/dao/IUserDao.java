@@ -17,6 +17,6 @@ public interface IUserDao {
 
     void deleteFavoriteMovie(String userId, Long movieId);
 
-    void insertFavoriteMovie(String userPhone, Long movieId);
+    void insertFavoriteMovie(String userId, Long movieId);
 
 }

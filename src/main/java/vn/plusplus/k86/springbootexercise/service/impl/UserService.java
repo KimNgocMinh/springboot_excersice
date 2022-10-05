@@ -1,6 +1,7 @@
 package vn.plusplus.k86.springbootexercise.service.impl;
 
 import org.springframework.stereotype.Component;
+import vn.plusplus.k86.springbootexercise.dao.impl.FavoriteMovieDao;
 import vn.plusplus.k86.springbootexercise.dao.impl.MovieDao;
 import vn.plusplus.k86.springbootexercise.dao.impl.RateDao;
 import vn.plusplus.k86.springbootexercise.dao.impl.UserDao;
@@ -17,6 +18,8 @@ public class UserService implements IUserService {
     private final MovieDao movieDao = new MovieDao();
 
     private final RateDao rateDao = new RateDao();
+
+    private final FavoriteMovieDao favoriteMovieDao = new FavoriteMovieDao();
 
     //thêm tài khoản người dùng vào database nếu hợp lệ, nếu sai trả về lỗi tương ứng
     @Override
@@ -54,23 +57,29 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public String insertMovie(String unknownPhone, Long movieId) {
-        userDao.insertFavoriteMovie(unknownPhone,movieId);
-        return "Added movie successfully";
+    public String insertMovie(String userId, Long movieId) {
+        if (favoriteMovieDao.checkIsValid(userId, movieId)) {
+            return "This movie is already in your favorite movie list";
+        }
+        userDao.insertFavoriteMovie(userId,movieId);
+        return "Successfully";
     }
 
 
     @Override
     public String deleteFavoriteMovie(String userId, Long movieId) {
+        if (!favoriteMovieDao.checkIsValid(userId, movieId)) {
+            return "This movie is not in your favorite movie list";
+        }
         userDao.deleteFavoriteMovie(userId, movieId);
-        return "Deteled movie successfully";
+        return "Successfully";
     }
 
 
     @Override
     public String rateMovie(String userId,Long movieId, Double ratePoint) {
         rateDao.rateMovie(userId, movieId, ratePoint);
-        return "Rated successfully";
+        return "Rated Successfully";
     }
 
     @Override

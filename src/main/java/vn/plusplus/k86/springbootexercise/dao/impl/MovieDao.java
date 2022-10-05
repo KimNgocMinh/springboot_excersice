@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 public class MovieDao extends AbstractDAO<Movie> implements IMovieDao {
-    private final MovieMapper movieMapper = new MovieMapper();
+    private static final MovieMapper movieMapper = new MovieMapper();
 
     @Override
     public List<Movie> findByPopularity(Boolean popularity, int page) {

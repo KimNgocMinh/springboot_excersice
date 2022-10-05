@@ -19,8 +19,8 @@ public class UserController {
     }
 
     @PostMapping("/addfavor")
-    public String addMovieToFavorite(@RequestParam long movieId, @RequestParam String userId) {
-        return userService.insertMovie(userId, movieId);
+    public String addMovieToFavorite(@RequestParam String userId, @RequestParam Long movieId) {
+         return userService.insertMovie(userId, movieId);
     }
 
     @PostMapping("/delete")

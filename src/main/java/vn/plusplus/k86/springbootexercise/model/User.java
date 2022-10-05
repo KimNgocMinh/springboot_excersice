@@ -14,11 +14,12 @@ public class User {
     public User() {
     }
 
-    public User(String phone, String password, String email, List<Movie> favoriteMovie) {
+    public User(String phone, String password, String email, List<Movie> favoriteMovie,List<Rate> ratedMovies) {
         this.phone = phone;
         this.password = password;
         this.email = email;
         this.favoriteMovie = favoriteMovie;
+        this.ratedMovies = ratedMovies;
     }
 
     public String getPhone() {

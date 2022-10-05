@@ -2,7 +2,6 @@ package vn.plusplus.k86.springbootexercise.mapper;
 
 import vn.plusplus.k86.springbootexercise.model.Movie;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

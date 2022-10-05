@@ -1,6 +1,8 @@
 package vn.plusplus.k86.springbootexercise.dao.impl;
 
 import vn.plusplus.k86.springbootexercise.dao.IUserDao;
+import vn.plusplus.k86.springbootexercise.mapper.RateMapper;
+import vn.plusplus.k86.springbootexercise.mapper.UserMapper;
 import vn.plusplus.k86.springbootexercise.model.User;
 
 import java.sql.Connection;
@@ -10,7 +12,7 @@ import java.sql.SQLException;
 
 
 public class UserDao extends AbstractDAO<User> implements IUserDao  {
-
+    private static final UserMapper userMapper = new UserMapper();
 
     @Override
     public boolean checkValidPhone(String phone) {
@@ -75,11 +77,9 @@ public class UserDao extends AbstractDAO<User> implements IUserDao  {
 
     @Override
     public void insertFavoriteMovie(String unknownPhone, Long movieId) {
-        String sql = "insert into favorite_movies (user_id, movie_id) values (?, ?)";
-        update(sql, unknownPhone, movieId);
+            String sql = "insert into favorite_movies (user_id, movie_id) values (?, ?)";
+            update(sql, unknownPhone, movieId);
     }
-
-
 
     @Override
     public void updateFavoriteMovie(Long favoriteMovieId, Long movieId) {
